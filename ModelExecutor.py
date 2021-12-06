@@ -5,9 +5,13 @@ from gensim.models import KeyedVectors
 
 class ModelExecutor:
 
+    def __init__(self):
+        pass
+
     def runModel(self, model_file):
         df = pd.read_csv("synonyms.csv")
         model = KeyedVectors.load_word2vec_format(model_file, binary=True)
+
         destination = "output/" + model_file.split('/')[len(model_file.split('/'))-1] + '-details.csv'
         f = open(destination, 'w', newline='')
         writer = csv.writer(f)

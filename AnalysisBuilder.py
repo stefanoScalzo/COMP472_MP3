@@ -6,6 +6,9 @@ import csv
 
 class AnalysisBuilder:
 
+    def __init__(self):
+        pass
+
     destination = 'analysis.csv'
 
     def writeAnalysis(self, model, model_name):
@@ -50,4 +53,3 @@ class AnalysisBuilder:
         accuracy = correct/questions_answered
         writer.writerow([model_name, vocab_size, correct, questions_answered, accuracy])
         f.close()
-        
