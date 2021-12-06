@@ -1,6 +1,4 @@
 import pandas as pd
-import os
-import errno
 import csv
 
 
@@ -22,30 +20,22 @@ class AnalysisBuilder:
         :return:
         """
 
-        # create output directory if does not already exist
-        if not os.path.exists(os.path.dirname('output')):
-            try:
-                os.makedirs(os.path.dirname('output'))
-            except OSError as exc:
-                if exc.errno != errno.EEXIST:
-                    raise
-
         # read from the model's details csv (created by the Model Executor)
-        model_filename = model_name + '-details.csv'
-        df = pd.read_csv(model_filename + '-details.csv')
+        model_filename = 'output/' + model_name + '-details.csv'
+        df = pd.read_csv(model_filename)
         f = open(self.destination, 'a+', newline='')
         writer = csv.writer(f)
 
-        for row in df.values:
-            vocab_size = len(model)
-            correct = 0
-            questions_answered = 0
+        vocab_size = len(model)
+        correct = 0
+        questions_answered = 0
 
+        for row in df.values:
             if row[3] == 'correct':
                 correct += 1
 
             if row[3] != 'guess':
-                questions_answered += 0
+                questions_answered += 1
 
         accuracy = correct/questions_answered
         writer.writerow([model_name, vocab_size, correct, questions_answered, accuracy])
