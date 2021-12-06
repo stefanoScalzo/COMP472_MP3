@@ -1,8 +1,15 @@
 
+from AnalysisBuilder import AnalysisBuilder
 from ModelExecutor import ModelExecutor
 
 model_executor = ModelExecutor()
-model_executor.runModel('models/word2vec-google-news-300.gz')
+google_model_300 = model_executor.runModel('models/word2vec-google-news-300.gz')
+
+
+analyzer = AnalysisBuilder()
+
+analyzer.writeAnalysis(google_model_300, 'glove-twitter-100')
+
 
 
 

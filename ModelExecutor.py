@@ -28,3 +28,4 @@ class ModelExecutor:
 
             writer.writerow([row[0], row[1], highestScoreWord, result])
         f.close()
+        return model
