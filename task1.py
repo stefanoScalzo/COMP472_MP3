@@ -8,7 +8,7 @@ google_model_300 = model_executor.runModel('models/word2vec-google-news-300.gz')
 
 analyzer = AnalysisBuilder()
 
-analyzer.writeAnalysis(google_model_300, 'glove-twitter-100')
+analyzer.writeAnalysis(google_model_300, 'word2vec-google-news-300')
 
 
 

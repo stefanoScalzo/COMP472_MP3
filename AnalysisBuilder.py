@@ -1,6 +1,4 @@
 import pandas as pd
-import os
-import errno
 import csv
 
 
@@ -26,21 +24,21 @@ class AnalysisBuilder:
         """
 
         # read from the model's details csv (created by the Model Executor)
-        model_filename = model_name + '-details.csv'
-        df = pd.read_csv(model_filename + '-details.csv')
+        model_filename = 'output/' + model_name + '-details.csv'
+        df = pd.read_csv(model_filename)
         f = open(self.destination, 'a+', newline='')
         writer = csv.writer(f)
 
-        for row in df.values:
-            vocab_size = len(model)
-            correct = 0
-            questions_answered = 0
+        vocab_size = len(model)
+        correct = 0
+        questions_answered = 0
 
+        for row in df.values:
             if row[3] == 'correct':
                 correct += 1
 
             if row[3] != 'guess':
-                questions_answered += 0
+                questions_answered += 1
 
         accuracy = correct/questions_answered
         writer.writerow([model_name, vocab_size, correct, questions_answered, accuracy])

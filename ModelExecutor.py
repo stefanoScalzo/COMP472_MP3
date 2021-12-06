@@ -1,5 +1,7 @@
 import pandas as pd
 import csv
+import os
+import errno
 from gensim.models import KeyedVectors
 
 
@@ -9,10 +11,17 @@ class ModelExecutor:
         pass
 
     def runModel(self, model_file):
+         # create output directory if does not already exist
+        if not os.path.exists(os.path.dirname('output')):
+            try:
+                os.makedirs('output')
+            except OSError as exc:
+                if exc.errno != errno.EEXIST:
+                    raise
+
         df = pd.read_csv("synonyms.csv")
         model = KeyedVectors.load_word2vec_format(model_file, binary=True)
-
-        destination = "output/" + model_file.split('/')[len(model_file.split('/'))-1] + '-details.csv'
+        destination = "output/" + model_file.split('/')[len(model_file.split('/'))-1][0:-3] + '-details.csv'
         f = open(destination, 'w', newline='')
         writer = csv.writer(f)
 
