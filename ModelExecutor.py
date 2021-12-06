@@ -8,8 +8,8 @@ class ModelExecutor:
     def runModel(self, model_file):
         df = pd.read_csv("synonyms.csv")
         model = KeyedVectors.load_word2vec_format(model_file, binary=True)
-        destination = model_file + 'details.csv'
-        f = open(destination, 'w')
+        destination = "output/" + model_file.split('/')[len(model_file.split('/'))-1] + '-details.csv'
+        f = open(destination, 'w', newline='')
         writer = csv.writer(f)
 
         for row in df.values:
