@@ -21,7 +21,8 @@ class ModelExecutor:
 
         df = pd.read_csv("synonyms.csv")
         model = KeyedVectors.load_word2vec_format(model_file, binary=True)
-        destination = "output/" + model_file.split('/')[len(model_file.split('/'))-1][0:-3] + '-details.csv'
+        name = model_file.split('/')[len(model_file.split('/'))-1]
+        destination = "output/" + name[0:len(name)-3] + '-details.csv' # offset by 3 to remove the .gz
         f = open(destination, 'w', newline='')
         writer = csv.writer(f)
 
