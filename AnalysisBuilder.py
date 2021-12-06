@@ -25,14 +25,6 @@ class AnalysisBuilder:
         :return:
         """
 
-        # create output directory if does not already exist
-        if not os.path.exists(os.path.dirname('output')):
-            try:
-                os.makedirs(os.path.dirname('output'))
-            except OSError as exc:
-                if exc.errno != errno.EEXIST:
-                    raise
-
         # read from the model's details csv (created by the Model Executor)
         model_filename = model_name + '-details.csv'
         df = pd.read_csv(model_filename + '-details.csv')
