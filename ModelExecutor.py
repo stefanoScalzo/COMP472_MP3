@@ -3,7 +3,8 @@ import csv
 import os
 import errno
 from gensim.models import KeyedVectors
-
+import gensim.downloader as api
+from gensim.models.word2vec import Word2Vec
 
 class ModelExecutor:
 
@@ -24,7 +25,9 @@ class ModelExecutor:
         f = open(destination, 'w', newline='')
         writer = csv.writer(f)
 
-        model = KeyedVectors.load_word2vec_format('models/' + model_name + '.gz', binary=binary)
+        model = api.load(model_name)
+        #model = Word2Vec(corpus)
+        #model = KeyedVectors.load_word2vec_format(corpus, binary=binary)
         answer = ''
 
         for row in df.values:

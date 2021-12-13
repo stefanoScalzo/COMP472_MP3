@@ -1,4 +1,15 @@
 # COMP472_MP3
 
-Make sure you donwload the google trained data from https://s3.amazonaws.com/dl4j-distribution/GoogleNews-vectors-negative300.bin.gz in the same folder
-This was done to not continuously download the traning data in the code
+We have provided the models in the models folder to prevent downloading everytime
+
+To run Task 1:
+
+python3 task1.py
+
+To run Task 2:
+
+python3 task2.py
+
+Git :
+
+https://github.com/stefanoScalzo/COMP472_MP3
