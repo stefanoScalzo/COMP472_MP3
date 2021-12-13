@@ -26,8 +26,6 @@ class ModelExecutor:
         writer = csv.writer(f)
 
         model = api.load(model_name)
-        #model = Word2Vec(corpus)
-        #model = KeyedVectors.load_word2vec_format(corpus, binary=binary)
         answer = ''
 
         for row in df.values:
